@@ -15,22 +15,8 @@
         } 
     }]);
 
-/*
-    myapp.factory('filterFactory', function(productsService){
-        var factory;
-        var allProducts = [];
 
-        factory.getProducts = function(){
-            $scope.data = productsService.getProducts(function(data){
-               // loadProducts(data);
-            });
-        }
-
-        return factory;
-    });//*/
-
-
-	productsapp.controller('productsController', function ($scope, $element, $location, productsService) {
+	productsapp.controller('productsController', function ($scope, productsService) {
         //PUBLIC 
         //all products in the inventory (unfiltered)
         $scope.allProducts = [];
@@ -45,7 +31,6 @@
 
         //fired when the sizeFilterValue changes
         $scope.sizeFilterChanged = function(){
-            //$location.search("size",$scope.sizeFilterValue).replace();
             filterProducts();
         }
 
@@ -91,23 +76,7 @@
                 for(j=0;j<data[i].size.length;j++){
                     //if the size is not already in sizes filter list add it 
                     if (! $scope.sizes.includes(data[i].size[j])) {
-                        //if  the previous size is already loaded then place this size after
-                        if ((j-1)>=0 && $scope.sizes.includes(data[i].size[j-1])) {
-                            //$scope.sizes = $scope.sizes.slice(0,$scope.sizes.indexOf(data[i].size[j-1])).concat(data[i].size[j]).concat($scope.sizes.slice($scope.sizes.indexOf(data[i].size[j-1])));
-                            var beforepostion = $scope.sizes.indexOf(data[i].size[j-1]);
-                            var elementsbefore = $scope.sizes.slice(0,beforepostion);
-                            var elementsafter =  $scope.sizes.slice($scope.sizes.indexOf(data[i].size[j-1]));
-                            $scope.sizes = elementsbefore.concat(data[i].size[j]).concat(elementsafter);
-                            //array1.concat(array2)
-                        }
-                        //else if the next size is already loaded then place this size before
-                        else if((j+1)<=data[i].size.length && $scope.sizes.includes(data[i].size[j+1])) {
-
-                        }
-                        //else just pop it on the end
-                        else {
-                            $scope.sizes.push(data[i].size[j]);
-                        }
+                        $scope.sizes.push(data[i].size[j]);
                     }
                 }//*/
 
@@ -118,20 +87,9 @@
             //load the displayProducts
             filterProducts();
             
-            angular.element($element).ready(function() {
-                //jQuery or other calls to the rendered content can go here.
-            });
             $scope.dataLoaded = true;
         }
 
-
-        // Listen for changes to the Route. 
-        /*$scope.$on(
-            "$locationChangeSuccess",
-            function( $newState, $oldState ){
-                    filterProducts();
-            }
-        );//*/
         //initialise the controller 
         loadData();
 
