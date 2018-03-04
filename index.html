@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>GN</title>
+
+        <!-- Stylesheet Includes -->
+        <link href='http://fonts.googleapis.com/css?family=Amatic+SC:400,700|Pompiere|Lato:400,700' rel='stylesheet' type='text/css'>
+
+        <!-- The main CSS file
+        -->
+        <link href="/css/style.css" rel="stylesheet" /> 
+
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.min.js"></script>
+
+    </head>
+
+    <body>
+        <div class="container" ng-app="productsApp" ng-controller="productsController" >
+            <div class="header">
+                Women's tops
+                <div class="filter">
+                    <select ng-change="sizeFilterChanged()" ng-model="sizeFilterValue">
+                        <option value="">Filter by Size</option>
+                        <option value="">All Sizes</option>
+                        <option ng-repeat="size in sizes" value="{{size}}">{{size}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="product-list" ng-class="{'loaded':dataLoaded}">
+                <div class="loading">Loading...</div>
+                <div class="product" id="product-{{product.index}}" ng-repeat="product in displayProducts track by product.index">
+                    <div class="product-content">
+                        <img class="product-image" ng-src="{{product.productImage}}" />
+                        <div class="product-labels">
+                            <div ng-repeat="label in product.labels" class="label {{label.class}}" >
+                                {{label.label}}
+                            </div>
+                            <br class="clear" />
+                        </div>
+                        <div class="product-text">
+                            <span class="name">
+                                {{product.productName}}
+                            </span>
+                            <span class="price">
+                                {{product.price}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <br class="clear" />
+            </div>
+        </div>
+
+        <!-- JavaScript Includes 
+        <script type="text/javascript" src="/js/jquery.min.js"></script>-->
+        <script type="text/javascript" src="/js/application.js"></script>
+        <!-- The main JS file -->
+        
+        <!-- Inits -->
+
+
+
+    </body>
+</html>
