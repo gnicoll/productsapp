@@ -6,7 +6,7 @@
     productsapp.service('productsService', ['$http', function($http){
         this.getProducts = function(onLoaded){
             var url = "/products.json";
-            $http({method:'GET',url: "/data/products.json"}).
+            $http({method:'GET',url: "./data/products.json"}).
                 then(function(response){
                     onLoaded(response.data);
                 }, function(response){
