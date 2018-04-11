@@ -1,6 +1,6 @@
 # productsapp
 
-## A Front End code demonstration for AKQA by Glenn Nicoll.
+## A Front End code demonstration  by Glenn Nicoll.
 
 I choose to implement this task using AngularJS (1.6.9) due to my familiarity with this framework. 
 AngularJS is the only external resource used.
